@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <title>Cusep · Industrial intelligence</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Cusep home"><span class="logo">c.</span><span>cusep<span class="brand-sub">INDUSTRIAL INTELLIGENCE</span></span></a>
+    <div class="workspace-label">YOUR WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <button class="nav active" data-view="companies"><span>▦</span> Companies <span id="nav-company-count" class="nav-count">0</span></button>
+      <button class="nav" data-view="products"><span>◇</span> Products</button>
+      <button class="nav" data-view="sources"><span>▤</span> Source library</button>
+      <button class="nav" data-view="activity"><span>↻</span> Import activity <i id="running-dot" hidden></i></button>
+    </nav>
+    <div class="sidebar-note"><span class="tiny-label">RESEARCH AREA</span><strong>Başkent OSB</strong><span>Ankara, Türkiye</span><span class="local-badge">● Local database</span></div>
+    <div class="sidebar-bottom"><span class="avatar">B</span><div>Company research<small>Evidence before assumptions</small></div></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div><span class="muted">Workspace</span><span class="slash">/</span><span id="breadcrumb">Companies</span></div><div class="top-actions"><span class="status-light"></span> Persistent SQLite storage <button class="icon-button" id="help-button" aria-label="Help">?</button></div></header>
+    <main>
+      <div class="page-heading"><div><div class="eyebrow">BAŞKENT ORGANIZED INDUSTRIAL ZONE</div><h1 id="page-title">Know the companies.<br><span>Discover what they make.</span></h1><p id="page-subtitle">A source-backed directory of manufacturers, capabilities, and products.</p></div><div class="heading-actions"><button class="button secondary" id="export-button">↓ Export database</button><button class="button primary" id="import-button">＋ Add a source</button></div></div>
+      <section class="stats" aria-label="Database statistics">
+        <div class="stat"><span class="stat-icon teal">▦</span><div><span>Companies</span><strong id="stat-companies">0</strong><small>In your research database</small></div></div>
+        <div class="stat"><span class="stat-icon blue">◇</span><div><span>Product candidates</span><strong id="stat-products">0</strong><small>With traceable source evidence</small></div></div>
+        <div class="stat"><span class="stat-icon violet">▤</span><div><span>Source documents</span><strong id="stat-documents">0</strong><small>Web pages, catalogues & files</small></div></div>
+        <div class="stat"><span class="stat-icon amber">◷</span><div><span>Needs review</span><strong id="stat-review">0</strong><small>Keep your research reliable</small></div></div>
+      </section>
+      <div id="job-banner" class="banner" hidden role="status"></div>
+      <div class="content-grid">
+        <section class="data-panel">
+          <div class="panel-heading"><div><h2 id="table-title">Company directory <span id="total-pill" class="count-pill">0</span></h2><p id="table-description">Explore companies by their area of operation.</p></div><button id="add-company" class="text-button">＋ New company</button></div>
+          <div class="filters"><label class="search"><span>⌕</span><input id="search" placeholder="Search companies, capabilities…" aria-label="Search database"></label><select id="sector-filter" aria-label="Filter by sector"><option value="">All sectors</option></select><select id="status-filter" aria-label="Filter by review status"><option value="">All statuses</option><option value="needs_review">Needs review</option><option value="reviewed">Reviewed</option><option value="rejected">Rejected</option></select></div>
+          <div id="bulk-bar" class="bulk-bar" hidden><span id="selected-count">0 selected</span><button id="crawl-selected" class="text-button">↻ Research selected websites</button><button id="clear-selection" class="text-button">Clear</button></div>
+          <div id="data-content" aria-live="polite"></div>
+          <div id="pagination" class="pagination" hidden><span id="page-info"></span><div><button id="previous-page" class="button secondary small">← Previous</button><button id="next-page" class="button secondary small">Next →</button></div></div>
+        </section>
+        <aside class="insights" id="insights">
+          <section class="insight-card"><div class="tiny-label">SECTOR OVERVIEW</div><h3>Areas of expertise</h3><div id="sector-chart"></div><p class="fine-print">Original directory sectors when available. Expertise suggestions in company records require review.</p></section>
+          <section class="insight-card source-card"><span class="source-symbol">↗</span><h3>Start at the source.</h3><p>Import the Başkent OSB directory, then explore company websites and catalogues.</p><button id="directory-shortcut" class="button secondary">Import company directory →</button><div class="source-domain">baskentosb.org · Public directory</div></section>
+          <div class="trust-note"><span>◈</span><p><strong>Every fact has a source.</strong><br>Original evidence, capture dates, and review status stay with your records.</p></div>
+        </aside>
+      </div>
+      <footer>CUSEP RESEARCH WORKSPACE <span>Automatic extraction creates candidates. Verify manufacturer claims and specifications before use.</span></footer>
+    </main>
+  </div>
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
